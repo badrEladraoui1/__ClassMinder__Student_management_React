@@ -1,15 +1,12 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { useRef } from "react";
 
 import Button from "./Button";
 import Input from "./Input";
 import Modal from "./Modal";
 
-const NewStudentForm = ({
-  onHandleCancelAddStudent,
-  onHandleDataFromAddStudent,
-}) => {
+const ModifyStudent = ({ onHandleCancelModifiedStudent }) => {
   const modal = useRef();
   const firstName = useRef();
   const lastName = useRef();
@@ -28,45 +25,46 @@ const NewStudentForm = ({
       modal.current.open();
       return;
     }
-    onHandleDataFromAddStudent({
-      firstName: enteredFirstName,
-      lastName: enteredLastName,
-      creationDate: enteredCreationDate,
-    });
+    // onHandleDataFromAddStudent({
+    //   firstName: enteredFirstName,
+    //   lastName: enteredLastName,
+    //   creationDate: enteredCreationDate,
+    // });
   };
-
   return (
     <menu className="flex flex-col gap-5 p-10 uppercase w-[35rem]">
-      <h1>NewStudentForm</h1>
       <Modal ref={modal} btnText="Okay">
         <h2>You should provide all the fields</h2>
       </Modal>
+      <h1>ModifyStudent</h1>
       <div className="flex gap-4 justify-end">
-        <button onClick={onHandleCancelAddStudent}>Cancel</button>
+        <button onClick={onHandleCancelModifiedStudent}>Cancel</button>
         <Button onClick={handleSave}>Save</Button>
       </div>
-      <div className="flex flex-col gap-5">
-        <Input
-          ref={firstName}
-          label="first name"
-          isTextarea={false}
-          type="text"
-        />
-        <Input
-          ref={lastName}
-          label="last name"
-          isTextarea={false}
-          type="text"
-        />
-        <Input
-          ref={creationDate}
-          label="Creation Date"
-          isTextarea={false}
-          type="date"
-        />
+      <div>
+        <div className="flex flex-col gap-5">
+          <Input
+            ref={firstName}
+            label="first name"
+            isTextarea={false}
+            type="text"
+          />
+          <Input
+            ref={lastName}
+            label="last name"
+            isTextarea={false}
+            type="text"
+          />
+          <Input
+            ref={creationDate}
+            label="Creation Date"
+            isTextarea={false}
+            type="date"
+          />
+        </div>
       </div>
     </menu>
   );
 };
 
-export default NewStudentForm;
+export default ModifyStudent;
