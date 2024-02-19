@@ -12,14 +12,17 @@ const App = () => {
     selectedStudentId: undefined,
     students: [],
     activities: [],
+    tempData: null,
   });
 
-  const handleSavingModifiedStudent = () => {
+  const handleSavingModifiedStudent = (studentToModify) => {
     setStudents((prevState) => {
+      const modifiedStudent = {};
       return {
         ...prevState,
-        // selectedStudentId: undefined,
-        // studentModifiedId: prevState.selectedStudentId,
+        selectedStudentId: undefined,
+        studentModifiedId: undefined,
+        tempData: null,
       };
     });
   };
@@ -28,8 +31,9 @@ const App = () => {
     setStudents((prevState) => {
       return {
         ...prevState,
-        selectedStudentId: undefined,
-        studentModifiedId: prevState.selectedStudentId,
+        selectedStudentId: prevState.tempData,
+        studentModifiedId: undefined,
+        tempData: null,
       };
     });
   };
@@ -39,6 +43,8 @@ const App = () => {
       return {
         ...prevState,
         studentModifiedId: null,
+        tempData: prevState.selectedStudentId,
+        selectedStudentId: "",
       };
     });
   };
