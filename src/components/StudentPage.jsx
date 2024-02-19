@@ -16,7 +16,9 @@ const StudentPage = ({
   return (
     <menu className="w-2/3 p-10">
       <div className="flex gap-5 mb-4 justify-end">
-        <Button onClick={onHandleStartModifyStudent}>Modify</Button>
+        <Button onClick={() => onHandleStartModifyStudent(selectedStudent)}>
+          Modify
+        </Button>
         <button onClick={onHandleDeleteStudent}>Delete</button>
       </div>
 

@@ -37,7 +37,10 @@ const NewStudentForm = ({
 
   return (
     <menu className="flex flex-col gap-5 p-10 uppercase w-[35rem]">
-      <h1>NewStudentForm</h1>
+      <h1 className="text-4xl text-green-800 bg-green-300 p-2 rounded-md text-center mb-5">
+        <span className="text-green-950 font-bold">New</span> Student{" "}
+        <span className="text-green-950">Form</span>
+      </h1>
       <Modal ref={modal} btnText="Okay">
         <h2>You should provide all the fields</h2>
       </Modal>

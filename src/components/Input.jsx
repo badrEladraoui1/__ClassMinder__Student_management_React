@@ -1,9 +1,9 @@
 /* eslint-disable react/display-name */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 
-const Input = forwardRef(({ label, isTextarea, type }, ref) => {
+const Input = forwardRef(({ label, isTextarea, type, ...props }, ref) => {
   const INPUT_CLASSES =
     "text-xl rounded-xl w-80 p-3 bg-green-100 border-green-900 cursor-text";
 
@@ -16,6 +16,7 @@ const Input = forwardRef(({ label, isTextarea, type }, ref) => {
         <textarea id={label} name={label} className={INPUT_CLASSES}></textarea>
       ) : (
         <input
+          {...props}
           ref={ref}
           id={label}
           name={label}

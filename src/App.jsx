@@ -14,15 +14,31 @@ const App = () => {
     activities: [],
     tempData: null,
   });
+  const [studentBeingModified, setStudentBeingModified] = useState({
+    studentId: "",
+    firstName: "",
+    lastName: "",
+    creationDate: "",
+  });
 
-  const handleSavingModifiedStudent = (studentToModify) => {
+  const handleGetDataFromModifiedStudent = (studentToModify) => {
     setStudents((prevState) => {
-      const modifiedStudent = {};
+      const updatedStudents = prevState.students.map((student) => {
+        if (student.studentId === prevState.tempData) {
+          return {
+            studentId: student.studentId,
+            ...studentToModify,
+          };
+        }
+        return student;
+      });
+
       return {
         ...prevState,
         selectedStudentId: undefined,
         studentModifiedId: undefined,
         tempData: null,
+        students: updatedStudents,
       };
     });
   };
@@ -38,7 +54,18 @@ const App = () => {
     });
   };
 
-  const handleStartModifyStudent = () => {
+  const getStudentToModify = (student) => {
+    const studentWanted = {
+      studentId: student.studentId,
+      firstName: student.firstName,
+      lastName: student.lastName,
+      creationDate: student.creationDate,
+    };
+    setStudentBeingModified(studentWanted);
+  };
+
+  const handleStartModifyStudent = (studentToModify) => {
+    getStudentToModify(studentToModify);
     setStudents((prevState) => {
       return {
         ...prevState,
@@ -116,8 +143,6 @@ const App = () => {
     });
   };
 
-  console.log(students);
-
   const handleStartAddStudent = () => {
     setStudents((prevState) => {
       return {
@@ -170,8 +195,9 @@ const App = () => {
     mainContent = (
       <ModifyStudent
         onHandleCancelAddStudent={handleCancelAddStudent}
-        onHandleDataFromAddStudent={handleDataFromAddStudent}
         onHandleCancelModifiedStudent={handleCancelModifiedStudent}
+        studentBeingModified={studentBeingModified}
+        onHandleGetDataFromModifiedStudent={handleGetDataFromModifiedStudent}
       />
     );
   }
